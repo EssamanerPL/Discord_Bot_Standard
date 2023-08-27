@@ -18,18 +18,6 @@ const client = new Client({
     ],
 })
 
-// client.on(`guildMemberAdd`, member => {
-//     console.log("member join")
-//     const welcome = new EmbedBuilder()
-//     .setColor("Blue")
-//     .setTitle("Nowa osoba dołączyła")
-//     .setDescription(`Witaj <@${member.user.id}> na serwerze ${member.guild}`)
-//     .setFooter({text: member.user.username, iconURL: member.user.avatarURL({dynamic: true}) })
-//     .setTimestamp();
-
-//     member.guild.channels.get(`1144928397550694550`).send({embeds: [welcome]})
-// })
-
 // Handlers
 const commandHandler = new CommandHandler(client)
 const eventHandler = new EventHandler(client)
@@ -38,7 +26,11 @@ consola.start(`Starting app '${packageJson.name}'`)
 consola.box(`Author:  ${packageJson.author}\nVersion: ${packageJson.version}`)
 
 // Register commands
-await Promise.all([commandHandler.loadCommand('./commands/utils/ping.command'),commandHandler.loadCommand('./commands/utils/help.command')])
+await Promise.all([
+    commandHandler.loadCommand('./commands/utils/ping.command'),
+    commandHandler.loadCommand('./commands/utils/help.command'),
+    commandHandler.loadCommand(`./commands/admin/ban.command`)
+])
 
 commandHandler.displayLoadedCommands()
 
