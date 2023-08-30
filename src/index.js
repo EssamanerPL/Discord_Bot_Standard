@@ -15,6 +15,7 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessageReactions,
     ],
 })
 
@@ -29,7 +30,12 @@ consola.box(`Author:  ${packageJson.author}\nVersion: ${packageJson.version}`)
 await Promise.all([
     commandHandler.loadCommand('./commands/utils/ping.command'),
     commandHandler.loadCommand('./commands/utils/help.command'),
-    commandHandler.loadCommand(`./commands/admin/ban.command`)
+    commandHandler.loadCommand(`./commands/admin/ban.command`),
+    commandHandler.loadCommand(`./commands/admin/warn.command`),
+    commandHandler.loadCommand(`./commands/admin/kick.command`),
+    commandHandler.loadCommand(`./commands/admin/setup.command`),
+    commandHandler.loadCommand(`./commands/admin/create.autoroles.command`),
+
 ])
 
 commandHandler.displayLoadedCommands()

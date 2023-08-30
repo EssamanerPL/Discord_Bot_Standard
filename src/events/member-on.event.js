@@ -18,6 +18,9 @@ export default {
 
         const welcomeChannel = await member.guild.channels.cache.get(`1144928397550694550`)
         await welcomeChannel.fetch()
-        welcomeChannel.send({embeds: [welcome]})
+        welcomeChannel.send({
+            embeds: [welcome]
+        })
+
     }
     }

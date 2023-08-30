@@ -1,20 +1,19 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder, bold} from "discord.js"
 
-
 export default {
 
     cooldown: 5,
     data: new SlashCommandBuilder()
-        .setName(`ban`)
-        .setDescription(`Eleminate target permanently from the server`)
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
+        .setName(`warn`)
+        .setDescription(`Warn user`)
+        .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
         .addUserOption(option =>
             option.setName(`target`)
-            .setDescription('Wybierz osobę do zbanowania')
+            .setDescription('Wybierz osobę do ostrzeżenia')
             )
         .addStringOption(option =>
             option.setName(`reason`)
-            .setDescription(`Powód bana`)
+            .setDescription(`Powód warna`)
             ),
 
     async execute(interaction) {
@@ -23,8 +22,8 @@ export default {
 
         const confimm = new ButtonBuilder()
         .setCustomId(`confirm`)
-        .setLabel(`Zbanuj`)
-        .setStyle(ButtonStyle.Danger)
+        .setLabel(`Warn`)
+        .setStyle(ButtonStyle.Primary)
 
         const cancel = new ButtonBuilder()
         .setCustomId(`cancel`)
@@ -35,23 +34,23 @@ export default {
         .addComponents(cancel, confimm)
 
         let embedStart = new EmbedBuilder()
-        .setColor("Red")
-        .setDescription(`Czy chcesz zbanować ${target} z powodu: "${reason}"`)
+        .setColor("Orange")
+        .setDescription(`Czy chcesz ostrzec ${target} z powodu: "${reason}"`)
 
         let embedCancel = new EmbedBuilder()
-        .setColor("Red")
-        .setDescription(`${target} Nie został zbanowany`)
+        .setColor("Orange")
+        .setDescription(`${target} Nie dostał warna`)
 
-        const embedBan = new EmbedBuilder()
-        .setColor(`Red`)
-        .setDescription(`${target.username} został zbanowany z powodu: ${reason}`)
+        const embedWarn = new EmbedBuilder()
+        .setColor(`Orange`)
+        .setDescription(`${target.username} dostał warna z powodu: ${reason}`)
 
         const embedDM = new EmbedBuilder()
-        .setColor("Red")
-        .setTitle("BAN")
-        .setDescription(`${target} zostałeś/aś zbanowany/a z serwera: `+ bold(`${interaction.guild.name}`) +  ` z powodu: `+ bold(`${reason}`))
+        .setColor("Orange")
+        .setTitle("WARN")
+        .setDescription(`${target} dostałeś/aś warna na serwerze: `+ bold(`${interaction.guild.name}`) +  ` z powodu: `+ bold(`${reason}`))
     
-
+ 
         const response = await interaction.reply({
             components: [row],
             embeds: [embedStart],
@@ -64,10 +63,10 @@ export default {
             await target.send({
                 embeds: [embedDM]
             })
-            await interaction.guild.members.ban(target)
             await confrimation.update({
                 components: [],
-                embeds: [embedBan]
+                embeds: [embedWarn],
+                ephemeral: false
             })
         } else if (confrimation.customId === "cancel") {
             await confrimation.update({
