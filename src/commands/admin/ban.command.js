@@ -11,6 +11,7 @@ export default {
         .addUserOption(option =>
             option.setName(`target`)
             .setDescription('Wybierz osobę do zbanowania')
+            .setRequired(true)
             )
         .addStringOption(option =>
             option.setName(`reason`)

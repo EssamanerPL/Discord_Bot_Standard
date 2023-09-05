@@ -29,6 +29,7 @@ class EventHandler {
             const event = await import(`file://${filePath}`).then(
                 (res) => res.default,
             )
+            console.log(event);
             const eventName = event.name
 
             if (event.once) {

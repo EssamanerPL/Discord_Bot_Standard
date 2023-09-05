@@ -8,10 +8,12 @@ export default {
         .addChannelOption(option =>
             option.setName("channel")
                 .setDescription("Wybierz kanał")
+                .setRequired(true)
         )
         .addRoleOption(option =>
             option.setName("role")
                 .setDescription("Wybierz role do nadawania")
+                .setRequired(true)
         ),
 
     async execute(interaction) {

@@ -10,6 +10,7 @@ export default {
         .addUserOption(option =>
             option.setName(`target`)
             .setDescription('Wybierz osobę do ostrzeżenia')
+            .setRequired(true)
             )
         .addStringOption(option =>
             option.setName(`reason`)
