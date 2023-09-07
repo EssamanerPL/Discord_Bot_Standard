@@ -1,6 +1,6 @@
-import {mongoose } from 'mongoose';
+import {model, Schema } from 'mongoose';
 
-const ticketSchema = new mongoose.Schema({
+const ticketSchema = new Schema({
     GuildID: String,
     MemberID: String,
     TicketID: String,
@@ -10,6 +10,4 @@ const ticketSchema = new mongoose.Schema({
     Type: String,
 });
 
-const ServiceModel = mongoose.model('services', ticketSchema);
-
-export default ServiceModel;
+export default model("ticket", ticketSchema)

@@ -16,17 +16,17 @@ export default {
         const row = new ActionRowBuilder() 
         .setComponents(
             new ButtonBuilder()
-                .setCustomId(`create-ticket-member`)
+                .setCustomId(`member`)
                 .setLabel(`Zgłoś użytkownika`)
                 .setStyle(ButtonStyle.Danger),
 
                 new ButtonBuilder()
-                .setCustomId(`create-ticket-bug`)
+                .setCustomId(`bug`)
                 .setLabel(`Zgłoś błąd`)
                 .setStyle(ButtonStyle.Secondary),
 
                 new ButtonBuilder()
-                .setCustomId(`create-ticket-other`)
+                .setCustomId(`other`)
                 .setLabel(`Inny problem`)
                 .setStyle(ButtonStyle.Success),
         )
