@@ -9,7 +9,8 @@ export default {
         .setDescription(`setup verification`)
         .addChannelOption(option =>
             option.setName("channel")
-                .setDescription("Wybierz kanał")
+            .setDescription("Wybierz kanał")
+            .setRequired(true)
         ),
 
     async execute(interaction) {

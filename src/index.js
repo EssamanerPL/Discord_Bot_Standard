@@ -4,7 +4,7 @@ import packageJson from '../package.json' assert { type: 'json' }
 import CommandHandler from './CommandHandler.js'
 import EventHandler from './EventHandler.js'
 import AntiCrash from './anti-crash.js'
-import { TOKEN } from './config.js'
+import { MONGODB, TOKEN } from './config.js'
 
 // Anti bot crash system
 AntiCrash.init()
@@ -16,6 +16,8 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildVoiceStates,
+
     ],
 })
 
@@ -34,7 +36,10 @@ await Promise.all([
     commandHandler.loadCommand(`./commands/admin/warn.command`),
     commandHandler.loadCommand(`./commands/admin/kick.command`),
     commandHandler.loadCommand(`./commands/admin/setup.command`),
+    commandHandler.loadCommand(`./commands/admin/mute.command`),
     commandHandler.loadCommand(`./commands/admin/create.autoroles.command`),
+    commandHandler.loadCommand(`./commands/admin/unmute.command`),
+    commandHandler.loadCommand(`./commands/side/ticket.command`),
 
 ])
 
