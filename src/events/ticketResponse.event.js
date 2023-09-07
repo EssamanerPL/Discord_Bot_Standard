@@ -19,11 +19,18 @@ export default {
             ephemeral: true
         })
 
-        await interaction.reply({
-            content: "Ticket został utworzony",
-            ephemeral: true
-        })
         try {
+            if (guild.channels.cache.find(channel => channel.name === `ticket-${member.user.username}`)) {
+                return interaction.reply({
+                    content: `nie możesz utworzyć więcej niż jednego ticketu`,
+                    ephemeral: true
+                })
+            } else {
+                await interaction.reply({
+                    content: "Ticket został utworzony",
+                    ephemeral: true
+                })
+            }
             await guild.channels.create({
                 name: `ticket-${member.user.username}`,
                 type: ChannelType.GuildText,
